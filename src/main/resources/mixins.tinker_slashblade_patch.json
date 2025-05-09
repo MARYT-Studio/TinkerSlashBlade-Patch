@@ -1,0 +1,13 @@
+{
+  "package": "world.maryt.tinker_slashblade_patch.mixins",
+  "required": true,
+  "refmap": "mixins.tinker_slashblade_patch.refmap.json",
+  "target": "@env(DEFAULT)",
+  "minVersion": "0.8.5",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinSlashBladeHelper"
+  ],
+  "server": [],
+  "client": []
+}

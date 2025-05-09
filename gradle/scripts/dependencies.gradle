@@ -1,0 +1,37 @@
+apply from: 'gradle/scripts/helpers.gradle'
+
+repositories {
+    exclusiveContent {
+        forRepository {
+            maven {
+                name 'CurseMaven'
+                url 'https://curse.cleanroommc.com'
+            }
+        }
+        filter {
+            includeGroup 'curse.maven'
+        }
+    }
+    mavenLocal() // Must be last for caching to work
+}
+
+dependencies {
+    // Include StripLatestForgeRequirements by default for the dev env, saves everyone a hassle
+    runtimeOnly 'com.cleanroommc:strip-latest-forge-requirements:1.0'
+    // Include OSXNarratorBlocker by default for the dev env, for M1+ Macs
+    runtimeOnly 'com.cleanroommc:osxnarratorblocker:1.0'
+
+    // Patch Target
+    implementation rfg.deobf('curse.maven:tinkers-slashblade-315371:3116657')
+
+    // SlashBlade
+    implementation rfg.deobf('curse.maven:slashblade-241596:3039993')
+    implementation rfg.deobf('curse.maven:mysterious-mountain-lib-368098:3254750')
+
+    compileOnly rfg.deobf("curse.maven:the-last-smith-306385:6512847")
+    runtimeOnly rfg.deobf("curse.maven:the-last-smith-306385:6512847")
+
+    // Tinkers Construct
+    implementation rfg.deobf("curse.maven:mantle-74924:2713386")
+    implementation rfg.deobf("curse.maven:tinkers-construct-74072:2902483")
+}
